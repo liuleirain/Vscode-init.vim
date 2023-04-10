@@ -23,29 +23,6 @@ let mapleader = " "
 nmap <leader>wq :wq<CR>
 nmap <leader>s :w<CR>
 
-function s:forceLocalOptions()
-    setlocal nowrap
-    setlocal conceallevel=0
-    setlocal hidden
-    setlocal bufhidden=hide
-    setlocal noautowrite
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal list
-    setlocal listchars=tab:??
-    if exists('b:vscode_controlled') && b:vscode_controlled
-        setlocal syntax=off
-    endif
-    setlocal nofoldenable
-    setlocal foldcolumn=0
-    setlocal foldmethod=manual
-    setlocal nolazyredraw
-endfunction
-
-augroup VscodeForceOptions
-    autocmd!
-    autocmd BufEnter,FileType * call <SID>forceLocalOptions()
-augroup END
 
 " 插件加载
 if exists('g:vscode')
@@ -109,20 +86,7 @@ nnoremap z- <Cmd>call <SID>reveal('bottom', 1)<CR>
 xnoremap z- <Cmd>call <SID>reveal('bottom', 1)<CR>
 nnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
 xnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
-
-" 将 C-/ 绑定到vscode注释，因为从vscode调用会由于多个游标而产生双重注释
-xnoremap <expr> <C-/> <SID>vscodeCommentary()
-nnoremap <expr> <C-/> <SID>vscodeCommentary() . '_'
-
-function! s:vscodeGoToDefinition(str)
-    if exists('b:vscode_controlled') && b:vscode_controlled
-        call VSCodeNotify('editor.action.' . a:str)
-    else
-        " Allow to function in help files
-        exe "normal! \<C-]>"
-    endif
-endfunction
-
+"
 " 多游标模式
 function! s:vscodePrepareMultipleCursors(append, skipEmpty)
     let m = mode()
@@ -215,14 +179,14 @@ nnoremap <C-w><C-c> <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')
 xnoremap <C-w><C-c> <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
 
 " 窗口/分割管理
-nnoremap <C-w>s <Cmd>call <SID>split('h')<CR>
+nnoremap <leader>j <Cmd>call <SID>split('h')<CR>
 xnoremap <C-w>s <Cmd>call <SID>split('h')<CR>
-nnoremap <C-w><C-s> <Cmd>call <SID>split('h')<CR>
+nnoremap <leader>k <Cmd>call <SID>split('h')<CR>
 xnoremap <C-w><C-s> <Cmd>call <SID>split('h')<CR>
 
-nnoremap <C-w>v <Cmd>call <SID>split('v')<CR>
+nnoremap <leader>h <Cmd>call <SID>split('v')<CR>
 xnoremap <C-w>v <Cmd>call <SID>split('v')<CR>
-nnoremap <C-w><C-v> <Cmd>call <SID>split('v')<CR>
+nnoremap <leader>l <Cmd>call <SID>split('v')<CR>
 xnoremap <C-w><C-v> <Cmd>call <SID>split('v')<CR>
 
 nnoremap <C-w>= <Cmd>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>
