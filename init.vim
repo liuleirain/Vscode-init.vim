@@ -66,8 +66,8 @@ xnoremap <C-S-F> <Cmd>call VSCodeNotifyVisual('workbench.action.findInFiles', 0)
 " 在文件搜索中搜索当前单词
 nnoremap ? <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
 " 切换标签
-" nnoremap H <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
-" nnoremap L <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+nnoremap H <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
+nnoremap L <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
 nnoremap <C-o> <Cmd>call VSCodeNotify("workbench.action.navigateBack")<CR>
 nnoremap <C-i> <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
 nnoremap <Tab> <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
