@@ -5,7 +5,7 @@ set clipboard=unnamedplus
 set wrap
 
 " 光标行
-set cursorline
+" set cursorline
 
 " 默认新窗口右和下
 set splitright
@@ -16,7 +16,7 @@ set ignorecase
 set smartcase
 
 " 使游标可见的插件使用假游标
-hi Cursor gui=reverse
+" hi Cursor  jgui=reverse
 
 " 更改leader
 let mapleader = " "
@@ -66,8 +66,11 @@ xnoremap <C-S-F> <Cmd>call VSCodeNotifyVisual('workbench.action.findInFiles', 0)
 " 在文件搜索中搜索当前单词
 nnoremap ? <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
 " 切换标签
-nnoremap H <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
-nnoremap L <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+" nnoremap H <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
+" nnoremap L <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+nnoremap <C-o> <Cmd>call VSCodeNotify("workbench.action.navigateBack")<CR>
+nnoremap <C-i> <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
+nnoremap <Tab> <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
 
 " 游标快速移动
 function s:reveal(direction, resetCursor)
@@ -86,6 +89,11 @@ nnoremap z- <Cmd>call <SID>reveal('bottom', 1)<CR>
 xnoremap z- <Cmd>call <SID>reveal('bottom', 1)<CR>
 nnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
 xnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
+
+
+nnoremap zm <Cmd>call VSCodeNotify("editor.foldAll")<CR>
+nnoremap zr <Cmd>call VSCodeNotify("editor.unfoldAll")<CR>
+" nnoremap za <Cmd>call VSCodeNotify("editor.foldAll")<CR>
 "
 " 多游标模式
 function! s:vscodePrepareMultipleCursors(append, skipEmpty)
