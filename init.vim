@@ -169,11 +169,6 @@ command! -complete=file -nargs=? New call <SID>split('h', '__vscode_new__')
 command! -complete=file -nargs=? Vnew call <SID>split('v', '__vscode_new__')
 command! -bang Only if <q-bang> ==# '!' | call <SID>closeOtherEditors() | else | call VSCodeNotify('workbench.action.joinAllGroups') | endif
 
-AlterCommand sp[lit] Split
-AlterCommand vs[plit] Vsplit
-AlterCommand new New
-AlterCommand vne[w] Vnew
-AlterCommand on[ly] Only
 
 " ª∫¥Ê«¯π‹¿Ì
 nnoremap <C-w>n <Cmd>call <SID>splitNew('h', '__vscode_new__')<CR>
@@ -332,19 +327,6 @@ command! -bang Qall call VSCodeNotify('workbench.action.closeAllEditors')
 command! -bang Wqall call <SID>saveAllAndClose()
 command! -bang Xall call <SID>saveAllAndClose()
 
-AlterCommand e[dit] Edit
-AlterCommand ex Ex
-AlterCommand ene[w] Enew
-AlterCommand fin[d] Find
-AlterCommand w[rite] Write
-AlterCommand sav[eas] Saveas
-AlterCommand wa[ll] Wall
-AlterCommand q[uit] Quit
-AlterCommand wq Wq
-AlterCommand x[it] Xit
-AlterCommand qa[ll] Qall
-AlterCommand wqa[ll] Wqall
-AlterCommand xa[ll] Xall
 
 nnoremap ZZ <Cmd>Wq<CR>
 nnoremap ZQ <Cmd>Quit!<CR>
