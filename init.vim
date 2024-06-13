@@ -23,6 +23,11 @@ let mapleader = " "
 nmap <leader>wq :wq<CR>
 nmap <leader>s :w<CR>
 
+" 折叠
+set foldmethod=indent
+set foldlevel=1
+syntax on
+set foldmethod=syntax
 
 " 插件加载
 if exists('g:vscode')
@@ -48,7 +53,6 @@ endfunction
 
 " 在可视模式下调用命令选择器的解决方案
 xnoremap <silent> <C-P> :<C-u>call <SID>openVSCodeCommandsInVisualMode()<CR>
-
 nnoremap <silent> <C-j> :call VSCodeNotify('workbench.action.navigateDown')<CR>
 xnoremap <silent> <C-j> :call VSCodeNotify('workbench.action.navigateDown')<CR>
 nnoremap <silent> <C-k> :call VSCodeNotify('workbench.action.navigateUp')<CR>
@@ -57,14 +61,18 @@ nnoremap <silent> <C-h> :call VSCodeNotify('workbench.action.navigateLeft')<CR>
 xnoremap <silent> <C-h> :call VSCodeNotify('workbench.action.navigateLeft')<CR>
 nnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR> 
 xnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
+
 " 向侧面开放定义
 nnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+
 " 在可视模式下调用命令选择器的解决方案
 xnoremap <C-P> <Cmd>call VSCodeNotifyVisual('workbench.action.quickOpen', 1)<CR>
 xnoremap <C-S-P> <Cmd>call VSCodeNotifyVisual('workbench.action.showCommands', 1)<CR>
 xnoremap <C-S-F> <Cmd>call VSCodeNotifyVisual('workbench.action.findInFiles', 0)<CR>
+
 " 在文件搜索中搜索当前单词
 nnoremap ? <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
+
 " 切换标签
 nnoremap H <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
 nnoremap L <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
@@ -91,8 +99,10 @@ nnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
 xnoremap zb <Cmd>call <SID>reveal('bottom', 0)<CR>
 
 
-nnoremap zm <Cmd>call VSCodeNotify("editor.foldAll")<CR>
-nnoremap zr <Cmd>call VSCodeNotify("editor.unfoldAll")<CR>
+nnoremap zM <Cmd>call VSCodeNotify("editor.foldAll")<CR>
+nnoremap zR <Cmd>call VSCodeNotify("editor.unfoldAll")<CR>
+nnoremap zo <Cmd>call VSCodeNotify("editor.fold")<CR>
+nnoremap zc <Cmd>call VSCodeNotify("editor.unfold")<CR>
 " nnoremap za <Cmd>call VSCodeNotify("editor.foldAll")<CR>
 "
 " 多游标模式
